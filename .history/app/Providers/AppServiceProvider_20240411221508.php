@@ -23,11 +23,6 @@ class AppServiceProvider extends ServiceProvider
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
         date_default_timezone_set('Asia/Jakarta');
-
-        // Bind the path.public to a custom directory
-        $this->app->bind('path.public', function() {
-            return base_path().'/../public_html';
-        });
     }
 
     /**
