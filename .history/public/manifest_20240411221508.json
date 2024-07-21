@@ -4,8 +4,8 @@
   "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
-  "name": "Project workfusion",
-  "short_name": "workfusion",
+  "name": "Project Hive",
+  "short_name": "PHive",
   "icons": [
       {
           "src": "/icon-192x192.png",

@@ -158,7 +158,7 @@ export default {
     return {
       title: 'Explore',
       meta: [
-        { name: 'description', content: 'workfusion Explore: Search the latest posted projects for you to apply or peek up the best projects that have been finished.' }
+        { name: 'description', content: 'PHive Explore: Search the latest posted projects for you to apply or peek up the best projects that have been finished.' }
       ]
     }
   },

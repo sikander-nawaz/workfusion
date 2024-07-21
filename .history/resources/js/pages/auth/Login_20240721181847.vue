@@ -99,7 +99,7 @@
         </p>
       </div>
       <div v-if="$matchMedia.xl" class="desktop-login__footer">
-        workfusion, All Rights Reserved. &copy; 2021 . | Created by Felicien
+        PHive, All Rights Reserved. &copy; 2021 . | Created by Felicien
       </div>
     </div>
   </div>

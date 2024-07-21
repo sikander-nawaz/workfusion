@@ -35,7 +35,7 @@ export default {
     return {
       title: 'Leaderboard',
       meta: [
-        { name: 'description', content: 'workfusion Leaderboard: Shows all the Top Student amongs expertises' }
+        { name: 'description', content: 'PHive Leaderboard: Shows all the Top Student amongs expertises' }
       ]
     }
   },

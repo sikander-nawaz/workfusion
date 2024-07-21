@@ -125,7 +125,7 @@
                       Project Name
                     </h4>
                     <div class="">
-                      <input v-model="anotherExperience.name" class="form-group__input-text mb-0_5" placeholder="e.g., workfusion Web Apps">
+                      <input v-model="anotherExperience.name" class="form-group__input-text mb-0_5" placeholder="e.g., PHive Web Apps">
                     </div>
                   </div>
                   <div class="form-group__container">

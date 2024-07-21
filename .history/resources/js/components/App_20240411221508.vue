@@ -39,7 +39,7 @@ export default {
   }),
 
   metaInfo () {
-    const appName = 'workfusion'
+    const appName = 'PHive'
 
     return {
       title: appName,

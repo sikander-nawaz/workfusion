@@ -60,7 +60,7 @@
         </div>
 
         <p class="footer__copyright">
-          PHive, All Rights Reserved. | Created by FILKOM
+          workfusion, All Rights Reserved. | Created by FILKOM
         </p>
       </div>
     </div>
