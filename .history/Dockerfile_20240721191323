@@ -1,0 +1,31 @@
+FROM php:7.4-fpm
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    git \
+    unzip \
+    libicu-dev \
+    zlib1g-dev \
+    libonig-dev \
+    libxml2-dev
+
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install zip \
+    && docker-php-ext-install intl
+
+# Copy application files
+COPY . /var/www/html
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Expose port
+EXPOSE 9000
+
+CMD ["php-fpm"]

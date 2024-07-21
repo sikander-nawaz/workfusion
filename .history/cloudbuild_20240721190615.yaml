@@ -1,0 +1,7 @@
+﻿steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$workfusion-424002/workfusion', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$workfusion-424002/workfusion']
+images:
+- 'gcr.io/$workfusion-424002/workfusion'a
