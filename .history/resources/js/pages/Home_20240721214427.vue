@@ -414,19 +414,19 @@ export default {
   .slide-2__fact-item {
     display: flex;
     align-items: center;
-    margin-block-end: 1rem;
+    margin-bottom: 1rem;
   }
 
   .slide-2__fact--icon {
     font-size: 1.5rem;
-    margin-inline-end: 0.5rem;
+    margin-right: 0.5rem;
   }
 
   .slide-2__fact--number {
     font-size: 1.5rem;
     font-weight: bold;
     color: #333;
-    margin-inline-end: 0.5rem;
+    margin-right: 0.5rem;
   }
 
   .slide-2__fact--name {
@@ -440,8 +440,8 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    inline-size: 100%;
-    block-size: 100%;
+    width: 100%;
+    height: 100%;
   }
 
   .slide-3__heading {
@@ -449,7 +449,7 @@ export default {
     font-weight: bold;
     line-height: 1.2;
     color: #333;
-    margin-block-end: 1rem;
+    margin-bottom: 1rem;
   }
 
   .slide-3__paragraph {

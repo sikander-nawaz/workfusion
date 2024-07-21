@@ -449,7 +449,7 @@ export default {
     font-weight: bold;
     line-height: 1.2;
     color: #333;
-    margin-block-end: 1rem;
+    margin-bottom: 1rem;
   }
 
   .slide-3__paragraph {

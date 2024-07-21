@@ -265,23 +265,23 @@ export default {
   }
 
   .slide-1__right-dashed-container {
-    inset-inline-end: 0;
+    right: 0;
   }
 
   .slide-1__left-dashed,
   .slide-1__right-dashed {
     position: absolute;
-    inset-block-end: 0;
-    inline-size: 100%;
-    block-size: auto;
+    bottom: 0;
+    width: 100%;
+    height: auto;
   }
 
   .slide-1__left-dashed {
-    inset-inline-start: 0;
+    left: 0;
   }
 
   .slide-1__right-dashed {
-    inset-inline-end: 0;
+    right: 0;
   }
 
   .slide-1__container {
@@ -289,8 +289,8 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    inline-size: 100%;
-    block-size: 100%;
+    width: 100%;
+    height: 100%;
   }
 
   .slide-1__first-block {
@@ -298,7 +298,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    inline-size: 50%;
+    width: 50%;
   }
 
   .slide-1__heading {
@@ -306,30 +306,30 @@ export default {
     font-weight: bold;
     line-height: 1.2;
     color: #333;
-    margin-block-end: 1rem;
+    margin-bottom: 1rem;
   }
 
   .slide-1__paragraph {
     font-size: 1.2rem;
     line-height: 1.5;
     color: #333;
-    margin-block-end: 2rem;
+    margin-bottom: 2rem;
   }
 
   .slide-1__ornament {
     position: relative;
-    inline-size: 100%;
-    block-size: auto;
-    margin-block-end: 2rem;
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
   }
 
   .slide-1__triangle {
     position: absolute;
-    inset-block-start: 50%;
-    inset-inline-start: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    inline-size: 100%;
-    block-size: auto;
+    width: 100%;
+    height: auto;
   }
 
   .slide-1__image-container {
@@ -337,29 +337,29 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    inline-size: 50%;
+    width: 50%;
   }
 
   .slide-1__image {
-    inline-size: 100%;
-    block-size: auto;
+    width: 100%;
+    height: auto;
   }
 
   .slide-1__dot-1,
   .slide-1__dot-2 {
     position: absolute;
-    inline-size: 100%;
-    block-size: auto;
+    width: 100%;
+    height: auto;
   }
 
   .slide-1__dot-1 {
-    inset-block-start: 10%;
-    inset-inline-start: 10%;
+    top: 10%;
+    left: 10%;
   }
 
   .slide-1__dot-2 {
-    inset-block-end: 10%;
-    inset-inline-end: 10%;
+    bottom: 10%;
+    right: 10%;
   }
 
   .slide-2__container {
@@ -367,12 +367,12 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    inline-size: 100%;
-    block-size: 100%;
+    width: 100%;
+    height: 100%;
   }
 
   .slide-2__left {
-    inline-size: 50%;
+    width: 50%;
   }
 
   .slide-2__right {
@@ -380,12 +380,12 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    inline-size: 50%;
+    width: 50%;
   }
 
   .slide-2__image {
-    inline-size: 100%;
-    block-size: auto;
+    width: 100%;
+    height: auto;
   }
 
   .slide-2__heading {
@@ -393,14 +393,14 @@ export default {
     font-weight: bold;
     line-height: 1.2;
     color: #333;
-    margin-block-end: 1rem;
+    margin-bottom: 1rem;
   }
 
   .slide-2__paragraph {
     font-size: 1.1rem;
     line-height: 1.5;
     color: #333;
-    margin-block-end: 2rem;
+    margin-bottom: 2rem;
   }
 
   .slide-2__facts {
@@ -408,25 +408,25 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    inline-size: 100%;
+    width: 100%;
   }
 
   .slide-2__fact-item {
     display: flex;
     align-items: center;
-    margin-block-end: 1rem;
+    margin-bottom: 1rem;
   }
 
   .slide-2__fact--icon {
     font-size: 1.5rem;
-    margin-inline-end: 0.5rem;
+    margin-right: 0.5rem;
   }
 
   .slide-2__fact--number {
     font-size: 1.5rem;
     font-weight: bold;
     color: #333;
-    margin-inline-end: 0.5rem;
+    margin-right: 0.5rem;
   }
 
   .slide-2__fact--name {
@@ -440,8 +440,8 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    inline-size: 100%;
-    block-size: 100%;
+    width: 100%;
+    height: 100%;
   }
 
   .slide-3__heading {
@@ -449,7 +449,7 @@ export default {
     font-weight: bold;
     line-height: 1.2;
     color: #333;
-    margin-block-end: 1rem;
+    margin-bottom: 1rem;
   }
 
   .slide-3__paragraph {
