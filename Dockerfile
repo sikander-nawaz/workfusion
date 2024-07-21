@@ -1,40 +1,38 @@
-# Use the official PHP 7.4 FPM image as a base
-FROM php:7.4-fpm
+FROM php:7.4-fpm-alpine
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    libzip-dev \
-    git \
-    unzip \
-    libicu-dev \
-    zlib1g-dev \
-    libonig-dev \
-    libxml2-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Install necessary packages
+RUN apk add --no-cache nginx wget nodejs npm
 
-# Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install zip \
-    && docker-php-ext-install intl
+# Create directories for nginx
+RUN mkdir -p /run/nginx
 
-# Copy application files to the container
-COPY . /var/www/html
+# Copy nginx configuration
+COPY docker/nginx.conf /etc/nginx/nginx.conf
 
-# Set working directory
-WORKDIR /var/www/html
+# Set the working directory
+WORKDIR /app
 
-# Ensure the PHP-FPM process runs as the correct user
-RUN chown -R www-data:www-data /var/www/html
+# Copy the application files
+COPY . .
 
-# Expose port 9000 for PHP-FPM
-EXPOSE 9000
+# Install Composer and PHP dependencies
+RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
+RUN composer install --no-dev
 
-# Start PHP-FPM server
-CMD ["php-fpm"]
+# Install Yarn and Node.js dependencies
+RUN npm install -g yarn
+RUN yarn install
+RUN yarn dev
 
-# Optionally, add a custom configuration file if needed
-# COPY custom-php.ini /usr/local/etc/php/conf.d/
+# Ensure proper ownership of application files
+RUN chown -R www-data: /app
+
+# Expose port 80
+EXPOSE 80
+
+# Copy the startup script and set execution permissions
+COPY docker/startup.sh /app/docker/startup.sh
+RUN chmod +x /app/docker/startup.sh
+
+# Command to run the startup script
+CMD sh /app/docker/startup.sh

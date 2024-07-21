@@ -37,3 +37,8 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 }
+ o to under the app/Providers, you will find your AppServiceProvider file and inside boot() method make the binding as below.
+
+   $this->app->bind('path.public', function() {
+        return base_path().'/../public_html';
+    });

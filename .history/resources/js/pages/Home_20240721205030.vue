@@ -9,7 +9,7 @@
           <h2 class="slide-1__heading moveInTop duration--1">
             Elevate <br>
             Your Career <br>
-            with EXCEPTIONAL  <br>
+            with Good <br>
             Projects.
           </h2>
           <div v-if="$matchMedia.xl" class="slide-1__ornament">
