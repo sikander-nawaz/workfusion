@@ -23,7 +23,7 @@
         </div>
 
         <p class="forgot-password__further-information">
-          For further information. Please kindly reach out to <a href="mailto:workfusionapp@gmail.com">workfusionapp@gmail.com</a>
+          For further information. Please kindly reach out to <a href="mailto:workfusionapp@gmail.com">phive77@gmail.com</a>
         </p>
       </div>
 

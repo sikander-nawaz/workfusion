@@ -2,11 +2,11 @@
   <div class="forgot-password__container">
     <TopImage :type="1" />
     <h2 class="forgot-password__h2 text-center">
-      Didn't get any verification email?
+      Don’t worry if you forgot your password
     </h2>
 
     <p class="forgot-password__p">
-      Or maybe you late verify it? Don't worry. Just fill your email on the field below. And click resend button.
+      Don’t worry! Resetting your password is easy. Just type in this email field below that you registered on Phive.
     </p>
 
     <form class="forgot-password__form--container" @submit.prevent="send" @keydown="form.onKeydown($event)">
@@ -18,18 +18,18 @@
             <has-error :form="form" field="email" />
           </div>
           <v-button v-if="$matchMedia.xl" :loading="form.busy" class="btn btn--blue ml-2">
-            Resend Verification
+            Send
           </v-button>
         </div>
 
         <p class="forgot-password__further-information">
-          For further information. Please kindly reach out to <a href="mailto:workfusionapp@gmail.com">workfusionapp@gmail.com</a>
+          For further information. Please kindly reach out to <a href="mailto:workfusionappgmail.com">phive77@gmail.com</a>
         </p>
       </div>
 
       <!-- Submit Button -->
       <v-button v-if="!$matchMedia.xl" :loading="form.busy" class="btn btn--blue btn--large">
-        Resend Verification
+        Send
       </v-button>
     </form>
   </div>
@@ -45,7 +45,7 @@ export default {
   layout: 'back',
 
   metaInfo () {
-    return { title: 'Reset Password' }
+    return { title: 'Forgot Password' }
   },
 
   data: () => ({
@@ -69,12 +69,12 @@ export default {
 
   methods: {
     async send () {
-      await this.form.post('/api/email/resend')
+      await this.form.post('/api/password/email')
         .then(({ data }) => {
           this.snackbar.open(data.status)
         })
 
-      // this.$router.push({ name: 'login' })
+      this.$router.push({ name: 'login' })
     }
   }
 }

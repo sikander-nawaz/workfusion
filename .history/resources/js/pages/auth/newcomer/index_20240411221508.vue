@@ -29,7 +29,7 @@
 
     <div v-show="page > 2" class="newcomer__footer mt-3">
       <div><img src="/images/footer-logo-black.png" alt=""></div>
-      <div>workfusion, All Rights Reserved. &copy; 2024</div>
+      <div>PHive, All Rights Reserved. &copy; 2020</div>
     </div>
   </div>
 </template>
