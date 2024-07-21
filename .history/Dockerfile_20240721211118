@@ -34,4 +34,5 @@ EXPOSE 80
 COPY docker/startup.sh /app/docker/startup.sh
 RUN chmod +x /app/docker/startup.sh
 
-
+# Command to run the startup script
+CMD sh /app/docker/startup.sh
