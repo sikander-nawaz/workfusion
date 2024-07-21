@@ -187,7 +187,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   data: () => ({
-    appName: 'workfusion',
+    appName: 'PHive,
     menu: { show: false, hide: false },
     photoUrl: 'https://www.gravatar.com/avatar/67104dea1ce9aef46682a4d8d145588c.jpg?s=200&d=mm',
     dropdown: { state: false, timeout: '' }
