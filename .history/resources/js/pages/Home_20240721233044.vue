@@ -201,74 +201,53 @@ export default {
   }
 
   .slide-1__button {
-    background-color: #f7eac9; // Soft yellow
-    color: #333; // Dark text for contrast
-    padding: 0.75rem 1.5rem; // Increased padding for a more prominent button
+    background-color: yellow;
+    color: black;
+    padding: 0.5rem 1rem;
     border: none;
-    border-radius: 0.5rem; // Rounded corners
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Soft shadow for depth
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
     cursor: pointer;
 
     &:hover {
-      background-color: #f5d779; // Brighten the yellow on hover
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); // Enhanced shadow on hover
+      background-color: #ffd700; // Brighten the yellow on hover
     }
   }
 
-  .slide .slide-1__paragraph {
-    color: #444; // Slightly lighter text color for better readability
-    margin-block-start: 1.5rem; // Increased spacing between elements
+  .slide  .slide-1__paragraph {
+    color: #333; // Adjusting text color for better readability
+    margin-block-start: 1rem; // Adding spacing between elements
   }
 
   .slide-2__fact-item {
-    margin-block-end: 1.5rem; // Increased spacing between project status items
-    display: flex;
-    align-items: center;
+    margin-block-end: 1rem; // Adding spacing between project status items
   }
 
   .slide-2__fact--icon {
-    font-size: 1.8rem; // Larger icon size for better visibility
-    margin-inline-end: 0.75rem; // Increased spacing between icon and number
-    color: #f5a623; // Warm orange for icon
-  }
-
-  .slide-2__fact--number {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #333;
-    margin-inline-end: 0.75rem;
-  }
-
-  .slide-2__fact--name {
-    font-size: 1.1rem;
-    color: #666;
+    font-size: 1.5rem; // Increasing icon size for better visibility
+    margin-inline-end: 0.5rem; // Adding spacing between icon and number
   }
 
   .slide-3__heading {
-    color: #333;
-    margin-block-end: 1.5rem; // Increased margin for better spacing
+    color: #333; // Adjusting text color for better readability
   }
 
   .slide-3__paragraph {
-    color: #555; // Slightly darker text for better readability
-    margin-block-end: 2rem;
-    line-height: 1.6; // Improved line height for readability
+    color: #666; // Adjusting text color for better readability
+    margin-block-start: 1rem; // Adding spacing between elements
   }
 
   .slide-3__button {
-    background-color: #f7eac9; // Consistent button color
-    color: #333;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    background-color: yellow; // Setting yellow background for the button
+    color: black; // Setting black text color for better contrast
+    padding: 0.5rem 1rem; // Adding padding to the button
+    border: none; // Removing border
+    border-radius: 0.25rem; // Adding border radius
+    transition: background-color 0.3s ease; // Smooth transition for background color change
+    cursor: pointer; // Changing cursor to pointer on hover
 
     &:hover {
-      background-color: #f5d779; // Brighten the yellow on hover
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      background-color: #ffd700; // Brighten the yellow on hover
     }
   }
 
@@ -323,25 +302,25 @@ export default {
   }
 
   .slide-1__heading {
-    font-size: 2.8rem; // Slightly larger font size for emphasis
+    font-size: 2.5rem;
     font-weight: bold;
-    line-height: 1.3;
+    line-height: 1.2;
     color: #333;
-    margin-block-end: 1.5rem;
+    margin-block-end: 1rem;
   }
 
   .slide-1__paragraph {
-    font-size: 1.3rem;
-    line-height: 1.6;
-    color: #444;
-    margin-block-end: 2.5rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #333;
+    margin-block-end: 2rem;
   }
 
   .slide-1__ornament {
     position: relative;
     inline-size: 100%;
     block-size: auto;
-    margin-block-end: 2.5rem;
+    margin-block-end: 2rem;
   }
 
   .slide-1__triangle {
@@ -364,7 +343,6 @@ export default {
   .slide-1__image {
     inline-size: 100%;
     block-size: auto;
-    border-radius: 0.5rem; // Rounded corners for images
   }
 
   .slide-1__dot-1,
@@ -408,22 +386,21 @@ export default {
   .slide-2__image {
     inline-size: 100%;
     block-size: auto;
-    border-radius: 0.5rem;
   }
 
   .slide-2__heading {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: bold;
-    line-height: 1.3;
+    line-height: 1.2;
     color: #333;
-    margin-block-end: 1.5rem;
+    margin-block-end: 1rem;
   }
 
   .slide-2__paragraph {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #444;
-    margin-block-end: 2.5rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #333;
+    margin-block-end: 2rem;
   }
 
   .slide-2__facts {
@@ -432,6 +409,29 @@ export default {
     justify-content: center;
     align-items: flex-start;
     inline-size: 100%;
+  }
+
+  .slide-2__fact-item {
+    display: flex;
+    align-items: center;
+    margin-block-end: 1rem;
+  }
+
+  .slide-2__fact--icon {
+    font-size: 1.5rem;
+    margin-inline-end: 0.5rem;
+  }
+
+  .slide-2__fact--number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-inline-end: 0.5rem;
+  }
+
+  .slide-2__fact--name {
+    font-size: 1rem;
+    color: #333;
   }
 
   .slide-3__container {
@@ -445,33 +445,19 @@ export default {
   }
 
   .slide-3__heading {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: bold;
-    line-height: 1.3;
+    line-height: 1.2;
     color: #333;
-    margin-block-end: 1.5rem;
+    margin-block-end: 1rem;
   }
 
   .slide-3__paragraph {
-    font-size: 1.2rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.5;
     color: #666;
-    margin-block-end: 2.5rem;
+    margin-block-end: 2rem;
   }
 
   .slide-3__button {
-    background-color: #f7eac9;
-    color: #333;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #f5d779;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-  }
-}
+    background-color: yellow;a
