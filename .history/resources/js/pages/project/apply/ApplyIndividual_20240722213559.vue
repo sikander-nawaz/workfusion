@@ -133,11 +133,11 @@ export default {
 
     async generateWithAI () {
       try {
-        const response = await this.$http.post('/api/generate', this.form.apply)
+        const response = await this.$http.post('/api/generate', this.form.apply);
         this.form.apply = response.data
         this.snackbar.open('AI generation complete!')
       } catch (error) {
-        this.snackbar.open('Failed to generate with AI')
+        this.snackbar.open('Failed to generate with AI');
       }
     }
   }

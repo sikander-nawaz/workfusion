@@ -1,0 +1,38 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: workfusion_web
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+    depends_on:
+      - db
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=workfusion
+      - DB_USERNAME=workfusion
+      - DB_PASSWORD=workfusiona
+
+  db:
+    image: postgres:13
+    container_name: workfusion_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: workfusion
+      POSTGRES_PASSWORD: workfusion
+      POSTGRES_DB: workfusion
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

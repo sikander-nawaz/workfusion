@@ -14,7 +14,7 @@
               Frontend Engineer
             </option>
             <option value="Backend Engineer">
-              Backend Engineer
+              Backend Engineera
             </option>
             <option value="Data Expert">
               Data Expert
@@ -56,18 +56,12 @@
         </div>
       </div>
 
-      <!-- Generate with AI Button -->
-      <div class="form-group__container mb-5">
-        <v-button @click="generateWithAI" class="btn btn--blue btn--large apply__btn-generate">
-          <span>Generate with AI</span>
-          <span class="iconify" data-icon="si-glyph:robot" />
-        </v-button>
-      </div>
-
       <div class="">
         <!-- Submit Button -->
         <v-button :loading="form.busy" class="btn btn--blue btn--large apply__btn-submit">
-          <span>Submit</span>
+          <span>
+            Submit
+          </span>
           <span class="iconify" data-icon="si-glyph:paper-plane" />
         </v-button>
       </div>
@@ -123,27 +117,14 @@ export default {
         .then(({ data }) => {
           this.snackbar.open(data.message)
         })
-        .then(() => {
+        .then(e => {
           this.$router.push({ path: `/project/${this.$route.params.id}` })
         })
         .catch(e => {
           this.snackbar.open(e.response.data.message)
         })
-    },
-
-    async generateWithAI () {
-      try {
-        const response = await this.$http.post('/api/generate', this.form.apply)
-        this.form.apply = response.data
-        this.snackbar.open('AI generation complete!')
-      } catch (error) {
-        this.snackbar.open('Failed to generate with AI')
-      }
     }
   }
 }
 </script>
-
-<style scoped>
-/* Add your component-specific styles here */
-</style>
+a

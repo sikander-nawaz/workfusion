@@ -1,7 +1,24 @@
 <template>
   <form @submit.prevent="submitTeam" @keydown="form.onKeydown($event)">
     <div class="">
-      <!-- Team Members -->
+      <!-- Expertise Role -->
+      <!-- <div class="form-group__container">
+        <h4 class="form-group__input-name form__input-name">
+          How many people are you?
+        </h4>
+        <div class="select">
+          <select v-model="form.person" @change="checkMany">
+            <option value="2">
+              2 Person
+            </option>
+            <option value="3">
+              3 Person
+            </option>
+          </select>
+          <span class="focus" />
+        </div>
+      </div> -->
+
       <div v-for="(member, index) in form.team" :key="`TeamMember-${index}`">
         <!-- Expertise Role -->
         <div class="form-group__container">
@@ -40,38 +57,32 @@
 
       <hr class="form--hr">
 
-      <!-- Tell me about your team! -->
+      <!-- Tell me about yourself! -->
       <div class="form-group__container">
         <h4 class="form-group__input-name form__input-name">
           Tell me about your team!
         </h4>
-        <div class="">
+        <div class=" form__input-name">
           <textarea v-model="form.self_describe" class="form-group__input-textarea" placeholder="Max. 300 words" rows="5" />
         </div>
       </div>
 
-      <!-- Why the team is interested -->
+      <!-- Why you ? -->
       <div class="form-group__container">
         <h4 class="form-group__input-name form__input-name">
-          Why is the team interested in joining this project?
+          Why the team interested in joining this project?
         </h4>
         <div class="">
           <textarea v-model="form.apply_reason" class="form-group__input-textarea" placeholder="Max. 300 words" rows="5" />
         </div>
       </div>
 
-      <!-- Generate with AI Button -->
-      <div class="form-group__container mb-5">
-        <v-button @click="generateWithAI" class="btn btn--blue btn--large apply__btn-generate">
-          <span>Generate with AI</span>
-          <span class="iconify" data-icon="si-glyph:robot" />
-        </v-button>
-      </div>
-
       <div class="">
         <!-- Submit Button -->
         <v-button :loading="form.busy" class="btn btn--blue btn--large apply__btn-submit">
-          <span>Submit</span>
+          <span>
+            Submit
+          </span>
           <span class="iconify" data-icon="si-glyph:paper-plane" />
         </v-button>
       </div>
@@ -118,6 +129,7 @@ export default {
   },
 
   methods: {
+
     addMember () {
       this.form.team.push({ expertise: '', tagname: '' })
     },
@@ -137,27 +149,15 @@ export default {
         .then(({ data }) => {
           this.snackbar.open(data.message)
         })
-        .then(() => {
+        .then(e => {
           this.$router.push({ path: `/project/${this.$route.params.id}` })
         })
         .catch(e => {
           this.snackbar.open(e.response.data.message)
         })
-    },
-
-    async generateWithAI () {
-      try {
-        const response = await this.$http.post('/api/generate', this.form)
-        this.form = response.data
-        this.snackbar.open('AI generation complete!')
-      } catch (error) {
-        this.snackbar.open('Failed to generate with AI')
-      }
     }
+
   }
 }
 </script>
-
-<style scoped>
-/* Add your component-specific styles here */
-</style>
+a

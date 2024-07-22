@@ -1,0 +1,41 @@
+FROM php:7.4-fpm-alpine
+
+# Update and install necessary packages
+RUN apk update && apk upgrade && \
+    apk add --no-cache nginx php7.4-fpm php7.4-opcache php7.4-gd php7.4-mysqli php7.4-mbstring php7.4-curl
+
+# Create necessary directories
+RUN mkdir -p /run/nginx
+
+# Copy Nginx configuration
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+
+# Set working directory
+WORKDIR /app
+
+# Copy application files
+COPY . .
+
+# Install Composer and dependencies
+RUN wget http://getcomposer.org/composer.phar && \
+    chmod a+x composer.phar && \
+    mv composer.phar /usr/local/bin/composer && \
+    composer install
+
+# Install Yarn and application dependencies
+RUN npm install -g yarn && \
+    yarn install && \
+    yarn build
+
+# Set ownership for files
+RUN chown -R www-data:www-data /app
+
+# Copy startup script
+COPY docker/startup.sh /app/docker/startup.sh
+RUN chmod +x /app/docker/startup.sh
+a
+# Expose ports
+EXPOSE 8080 9000
+
+# Command to start services
+CMD ["/app/docker/startup.sh"]

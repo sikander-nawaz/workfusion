@@ -1,0 +1,32 @@
+# Use PHP 7.2 FPM Alpine as the base image
+FROM php:7.2-fpm-alpine
+
+# Install necessary packages and PHP extensions
+RUN apk update && apk upgrade && \
+    apk add --no-cache nginx php7-fpm php7-opcache php7-gd php7-mysqli php7-mbstring php7-curl php7-zip
+
+# Create the necessary directories
+RUN mkdir -p /run/nginx
+
+# Copy Nginx configuration
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+
+# Set working directory
+WORKDIR /app
+
+# Copy application files
+COPY . .
+
+# Install Composer
+RUN wget https://getcomposer.org/composer.phar && \
+    chmod a+x composer.phar && \
+    mv composer.phar /usr/local/bin/composer
+
+# Install PHP dependencies
+RUN composer install
+
+# Expose port
+EXPOSE 80
+
+# Start services
+CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
