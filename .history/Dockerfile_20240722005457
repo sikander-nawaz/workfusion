@@ -21,11 +21,12 @@ RUN wget http://getcomposer.org/composer.phar && \
     chmod a+x composer.phar && \
     mv composer.phar /usr/local/bin/composer && \
     composer install --no-dev
+    php artisan key:generate
 
 # Install Yarn and Node.js dependencies
 RUN npm install -g yarn && \
     yarn install && \
-    yarn build
+    yarn run dev
 
 # Ensure proper ownership of application files
 RUN chown -R www-data:www-data /app
