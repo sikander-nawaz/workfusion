@@ -24,15 +24,13 @@
           <button class="btn--clear flex" @click="send">
             <span class="iconify message-icon" data-icon="carbon:send-filled" />
           </button>
-          <button class="btn--clear flex" @click="correctAndSuggest">
-            <span class="iconify message-icon" data-icon="twemoji:thought-balloon" />
-          </button>
         </div>
       </div>
     </div>
 
     <modal v-if="$matchMedia.xl" ref="showMessageInfo" :type="`small`" class="message__info">
       <template v-slot:header>
+        <!-- <div class="shortlist-modal__stabilizier" /> -->
         <h4 class="post__modal--h4 my-0">
           How to Chat
         </h4>
@@ -105,9 +103,7 @@ export default {
     otherUser: {},
     messages: [],
     interval: '',
-    firstLoad: false,
-    correcting: false,
-    suggestion: ''
+    firstLoad: false
   }),
 
   computed: {
@@ -118,104 +114,71 @@ export default {
 
   mounted () {
     this.getMessage()
+
     this.interval = setInterval(this.getMessage, 20000)
   },
 
-  beforeDestroy () {
+  beforeDestroy  () {
     clearInterval(this.interval)
   },
 
   methods: {
     async getMessage () {
-      try {
-        const { data } = await axios.post(`/api/user/${this.$route.params.tagname}/message`)
-        this.$store.dispatch('navigation/changeTitle', {
-          title: data.user.full_name
+      await axios.post(`/api/user/${this.$route.params.tagname}/message`)
+        .then(({ data }) => {
+          this.$store.dispatch('navigation/changeTitle', {
+            title: data.user.full_name
+          })
+          this.messages = data.messages
+          this.otherUser = data.user
         })
-        this.messages = data.messages
-        this.otherUser = data.user
-        if (!this.firstLoad) {
-          this.$refs.messageScroll.scrollTop = this.$refs.messageScroll.scrollHeight
-          this.$refs.messageList.scrollTop = this.$refs.messageList.scrollHeight
-          this.firstLoad = true
-        }
-      } catch (error) {
-        console.error('Error fetching messages:', error)
-      }
+        .then(e => {
+          if (!this.firstLoad) {
+            this.$refs.messageScroll.scrollTop = this.$refs.messageScroll.scrollHeight
+            this.$refs.messageList.scrollTop = this.$refs.messageList.scrollHeight
+            this.firstLoad = true
+          }
+        })
     },
 
     async send () {
-      const textArea = this.$refs.textAreaChat
-      const messageText = textArea.value.trim()
+      if (this.$refs.textAreaChat.value.length < 1) return false
 
-      if (messageText.length < 1) return false
+      axios.post(`/api/user/${this.$route.params.tagname}/message/send`, {
+        message: snarkdown(this.$refs.textAreaChat.value)
+      })
+        .then(({ data }) => {
+          this.$refs.textAreaChat.value = ''
 
-      try {
-        const correctedMessage = await this.correctSyntax(messageText)
+          let heightPerLine = '3.2rem'
+          if (this.$matchMedia.xl) heightPerLine = '4.6rem'
+          this.$refs.textAreaChat.style.height = heightPerLine
+          // this.$refs.messageList.style.marginBottom = `3.2rem`
 
-        const { data } = await axios.post(`/api/user/${this.$route.params.tagname}/message/send`, {
-          message: snarkdown(correctedMessage)
+          this.messages = data.messages
         })
-
-        textArea.value = ''
-        const heightPerLine = this.$matchMedia.xl ? '4.6rem' : '3.2rem'
-        textArea.style.height = heightPerLine
-
-        this.messages = data.messages
-        this.$refs.messageScroll.scrollTop = this.$refs.messageScroll.scrollHeight
-        this.$refs.messageList.scrollTop = this.$refs.messageList.scrollHeight
-      } catch (error) {
-        console.error('Error sending message:', error)
-      }
+        .then(e => {
+          this.$refs.messageScroll.scrollTop = this.$refs.messageScroll.scrollHeight
+          this.$refs.messageList.scrollTop = this.$refs.messageList.scrollHeight
+        })
     },
 
-    async correctSyntax (text) {
-      try {
-        const response = await axios.post('/api/syntax-correction', { text })
-        return response.data.correctedText
-      } catch (error) {
-        console.error('Error correcting syntax:', error)
-        return text // Return original text if there was an error
-      }
-    },
-
-    async correctAndSuggest () {
-      this.correcting = true
-      const textArea = this.$refs.textAreaChat
-      const messageText = textArea.value.trim()
-
-      try {
-        const response = await axios.post('/api/syntax-correction', { text: messageText })
-        this.suggestion = response.data.suggestion || 'No suggestions available'
-        textArea.value = response.data.correctedText
-        this.autoResizeTextarea({ target: textArea }) // Adjust textarea size
-      } catch (error) {
-        console.error('Error correcting syntax:', error)
-        this.suggestion = 'Error in correcting syntax'
-      } finally {
-        this.correcting = false
-      }
-    },
-
-    autoResizeTextarea (event) {
+    async autoResizeTextarea (event) {
       if (event.target.value.length < 1) {
-        const heightPerLine = this.$matchMedia.xl ? '4.6rem' : '3.2rem'
+        let heightPerLine = '3.2rem'
+        if (this.$matchMedia.xl) heightPerLine = '4.6rem'
         event.target.style.height = heightPerLine
         if (!this.$matchMedia.xl) this.$refs.messageList.style.marginBottom = '6.2rem'
       } else {
         event.target.style.height = 'auto'
-        if (event.target.scrollHeight >= 136) {
-          event.target.style.height = '13.6rem'
-        } else {
-          event.target.style.height = `${event.target.scrollHeight / 10}rem`
-        }
+        if (event.target.scrollHeight >= 136) event.target.style.height = '13.6rem'
+        else event.target.style.height = `${event.target.scrollHeight / 10}rem`
+
         if (!this.$matchMedia.xl) {
-          if (event.target.scrollHeight >= 136) {
-            this.$refs.messageList.style.marginBottom = '16.6rem'
-          } else {
-            this.$refs.messageList.style.marginBottom = `${(event.target.scrollHeight / 10) + 3}rem`
-          }
+          if (event.target.scrollHeight >= 136) this.$refs.messageList.style.marginBottom = '16.6rem'
+          else this.$refs.messageList.style.marginBottom = `${(event.target.scrollHeight / 10) + 3}rem`
         }
+
         this.$refs.messageScroll.scrollTop = this.$refs.messageScroll.scrollHeight
         this.$refs.messageList.scrollTop = this.$refs.messageList.scrollHeight
       }
@@ -228,10 +191,7 @@ export default {
     back () {
       this.$router.back()
     }
+
   }
 }
 </script>
-
-<style scoped>
-/* Add your custom styles here */
-</style>

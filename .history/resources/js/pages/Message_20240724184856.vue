@@ -169,7 +169,7 @@ export default {
       }
     },
 
-    async correctSyntax (text) {
+    async correctSyntax(text) {
       try {
         const response = await axios.post('/api/syntax-correction', { text })
         return response.data.correctedText
@@ -179,7 +179,7 @@ export default {
       }
     },
 
-    async correctAndSuggest () {
+    async correctAndSuggest() {
       this.correcting = true
       const textArea = this.$refs.textAreaChat
       const messageText = textArea.value.trim()
@@ -197,7 +197,7 @@ export default {
       }
     },
 
-    autoResizeTextarea (event) {
+    autoResizeTextarea(event) {
       if (event.target.value.length < 1) {
         const heightPerLine = this.$matchMedia.xl ? '4.6rem' : '3.2rem'
         event.target.style.height = heightPerLine
@@ -221,7 +221,7 @@ export default {
       }
     },
 
-    showInfo () {
+    showInfo() {
       this.$refs.showMessageInfo.openModal()
     },
 

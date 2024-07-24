@@ -169,7 +169,7 @@ export default {
       }
     },
 
-    async correctSyntax (text) {
+    async correctSyntax(text) {
       try {
         const response = await axios.post('/api/syntax-correction', { text })
         return response.data.correctedText
