@@ -1,6 +1,4 @@
 
-
-```
 # Workfusion 2.0
 
 Workfusion 2.0 is a modern web application for freelancers.
